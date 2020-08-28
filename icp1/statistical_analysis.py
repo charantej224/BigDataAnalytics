@@ -1,5 +1,4 @@
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('Data/Data.csv')
@@ -17,6 +16,6 @@ index = mean_df.columns
 plot_df = pd.DataFrame({'malignant': m_df,
                         'benign': b_df}, index=index)
 ax = plot_df.plot.bar(rot=90)
-plt.savefig("plots/mean_graph.png")
+plt.savefig("plots/mean_graph.png",bbox_inches='tight', dpi=960)
 plt.show()
 

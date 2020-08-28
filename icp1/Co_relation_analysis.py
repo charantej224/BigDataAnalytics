@@ -2,7 +2,13 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+## Reading the dataframe from the CSV file
 df = pd.read_csv('Data/Data.csv')
+
+'''Data Cleaning
+Step1: drop the unique values as it doesnt mean of significance when understanding co-relation.
+Step : the target values are considered as Malignent or Benign cancer which are replaced as numbers rather than characters.
+'''
 df = df.drop("id", axis=1)
 target_dict = {
     "M": 0,
@@ -10,6 +16,9 @@ target_dict = {
 }
 df["diagnosis"] = df["diagnosis"].apply(lambda x: target_dict[x])
 
+'''
+Understanding co-relation 
+'''
 corr = df.corr()
 ax = sns.heatmap(
     corr,
@@ -22,5 +31,5 @@ ax.set_xticklabels(
     rotation=45,
     horizontalalignment='right'
 )
-plt.savefig("plots/correlation_features.png")
+plt.savefig("plots/correlation_features.png", bbox_inches='tight')
 plt.show()

@@ -6,7 +6,13 @@ from sklearn.cluster import KMeans
 from sklearn import preprocessing
 from sklearn import metrics
 
+## Reading the dataframe from the CSV file
 df = pd.read_csv('Data/Data.csv')
+
+'''Data Cleaning
+Step1: drop the unique values as it doesnt mean of significance when understanding co-relation.
+Step : the target values are considered as Malign or Benign cancer which are replaced as numbers rather than characters.
+'''
 df = df.drop("id", axis=1)
 target_dict = {
     "M": 0,
@@ -20,6 +26,11 @@ prediction = df.iloc[:, 0:1]
 print(features.shape, prediction.shape)
 
 inertia_list = []
+
+'''
+k-means clustering to see how given data behaves with number of clusters.
+'''
+
 for i in range(1, 11):
     kmeans = KMeans(n_clusters=i, init='k-means++', max_iter=300, n_init=10, random_state=0)
     kmeans.fit(features)
@@ -49,6 +60,11 @@ km.fit(X_scaled)
 y_cluster_kmeans = km.predict(X_scaled)
 score = metrics.silhouette_score(X_scaled, y_cluster_kmeans)
 print(score)
+
+'''
+with reducing dimensionality from many features into two to see how the data is scatterred. 
+this also shows if using PCA to do the dimensionality reduction actually helps.
+'''
 
 pca = PCA(n_components=2)
 x_pca = pca.fit_transform(X_scaled_array)
