@@ -14,6 +14,7 @@ Step1: drop the unique values as it doesnt mean of significance when understandi
 Step : the target values are considered as Malign or Benign cancer which are replaced as numbers rather than characters.
 '''
 df = df.drop("id", axis=1)
+df = df.dropna()
 target_dict = {
     "M": 0,
     "B": 1

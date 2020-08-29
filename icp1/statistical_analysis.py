@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv('Data/Data.csv')
 df = df.drop("id", axis=1)
+df = df.dropna()
 target_dict = {
     "M": 0,
     "B": 1
